@@ -1,3 +1,4 @@
+import { getAPIBaseURL } from "@/utils/ApiHelper";
 import NextAuth from "next-auth";
 import Auth0Provider from "next-auth/providers/auth0";
 
@@ -12,7 +13,14 @@ const handler = NextAuth({
       issuer: process.env.AUTH0_ISSUER!,
     }),
   ],
-  callbacks: {},
+  callbacks: {
+    async jwt({ user, trigger, token }) {
+      if (trigger === "signIn" || trigger == "signUp") {
+        fetch(`${getAPIBaseURL()}/users/${user.name}`, { method: "POST" });
+      }
+      return token;
+    },
+  },
   secret: process.env.NEXTAUTH_SECRET,
 });
 
