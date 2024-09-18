@@ -1,4 +1,5 @@
 "use client";
+import { getAPIBaseURL } from "@/utils/ApiHelper";
 import { useState } from "react";
 
 export default function OnboardPage() {
@@ -9,7 +10,10 @@ export default function OnboardPage() {
       setError("Fix missing fields");
     }
 
-    //TODO: api call
+    await fetch("/api/onboard", {
+      method: "PUT",
+      body: JSON.stringify({ name: name }),
+    });
   };
 
   const [name, setName] = useState<string>("");
