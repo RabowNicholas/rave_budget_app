@@ -1,4 +1,5 @@
 import { getAPIBaseURL } from "@/utils/ApiHelper";
+import { getAppBaseURL } from "@/utils/NavHelper";
 import { getToken } from "next-auth/jwt";
 import { NextRequestWithAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
@@ -24,7 +25,7 @@ export async function PUT(req: NextRequestWithAuth) {
       throw new Error("Failed to update user onboarding");
     }
 
-    return NextResponse.json({ message: "User onboarded successfully" });
+    return NextResponse.redirect(data.redirect);
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

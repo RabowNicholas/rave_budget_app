@@ -1,8 +1,11 @@
 "use client";
 import { getAPIBaseURL } from "@/utils/ApiHelper";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 export default function OnboardPage() {
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("rd") ?? "/";
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -12,7 +15,7 @@ export default function OnboardPage() {
 
     await fetch("/api/onboard", {
       method: "PUT",
-      body: JSON.stringify({ name: name }),
+      body: JSON.stringify({ name: name, redirect: redirect }),
     });
   };
 
