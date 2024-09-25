@@ -5,7 +5,7 @@ import { getToken, JWT } from "next-auth/jwt";
 import { NextRequestWithAuth } from "next-auth/middleware";
 
 //TODO: replace with real routes. these are examples
-const protectedPathPatterns: RegExp[] = [/^\/dashboard/];
+const protectedPathPatterns: RegExp[] = [/^\/dashboard/, /^\/budget\/*/];
 
 const isProtectedPath = (url: string): boolean => {
   return protectedPathPatterns.some((pattern) => pattern.test(url));

@@ -1,5 +1,5 @@
 import { getAPIBaseURL } from "@/utils/ApiHelper";
-import NextAuth from "next-auth";
+import NextAuth, { DefaultSession } from "next-auth";
 import Auth0Provider from "next-auth/providers/auth0";
 
 const handler = NextAuth({
@@ -17,7 +17,11 @@ const handler = NextAuth({
   callbacks: {
     async jwt({ user, trigger, token }) {
       if (trigger === "signIn" || trigger == "signUp") {
-        fetch(`${getAPIBaseURL()}/users/${user.name}`, { method: "POST" });
+        const response = await fetch(`${getAPIBaseURL()}/users/${user.name}`, {
+          method: "POST",
+        });
+        const data = await response.json();
+        token.sub = data.id;
       }
       return token;
     },
