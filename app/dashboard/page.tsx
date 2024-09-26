@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { DashboardData } from "./model";
 
 export default function Dashboard() {
   const [data, setData] = useState<DashboardData | undefined>();
