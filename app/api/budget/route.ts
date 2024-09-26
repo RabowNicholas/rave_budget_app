@@ -5,6 +5,10 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const token = await getToken({ req });
+    const userId = token?.sub;
+    if (!userId) {
+      throw new Error("User id not found");
+    }
     const data = await req.json();
 
     const limits = data.limits
@@ -25,7 +29,7 @@ export async function POST(req: NextRequest) {
         limits: limits,
       }),
       headers: {
-        "User-Id": token?.sub!,
+        "User-Id": userId,
         "Content-Type": "application/json",
       },
     });

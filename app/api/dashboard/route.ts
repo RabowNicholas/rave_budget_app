@@ -3,28 +3,32 @@ import { getToken } from "next-auth/jwt";
 import { NextRequestWithAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
 
-export async function PUT(req: NextRequestWithAuth) {
+export async function GET(req: NextRequestWithAuth) {
   try {
     const token = await getToken({ req });
     if (!token) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+    const userId = token?.sub;
+    if (!userId) {
+      throw new Error("User id not found");
+    }
 
-    const data = await req.json();
-    const response = await fetch(`${getAPIBaseURL()}/users/onboard`, {
-      method: "PUT",
-      body: JSON.stringify({ phone: token.name, name: data.name }),
+    const response = await fetch(`${getAPIBaseURL()}/dashboard`, {
+      method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
+        "User-Id": userId,
         "Content-Type": "application/json",
       },
     });
+    const data = await response.json();
 
     if (!response.ok) {
       throw new Error("Failed to update user onboarding");
     }
 
-    return NextResponse.redirect(data.redirect);
+    return NextResponse.json(data);
   } catch (error: unknown) {
     let errorMessage = "An unexpected error occurred";
 

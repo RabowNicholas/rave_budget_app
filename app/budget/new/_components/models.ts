@@ -1,10 +1,10 @@
-interface BudgetOverviewData {
+export interface BudgetOverviewData {
   name: string;
   date: string;
   location: string;
 }
 
-interface BudgetLimitData {
+export interface BudgetLimitData {
   category: string;
   amount: number;
 }
