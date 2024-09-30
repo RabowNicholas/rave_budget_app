@@ -20,6 +20,7 @@ export default function Dashboard() {
       {data?.budgets.map((budget) => (
         <div key={budget.id} className="budget-container">
           <h2>{budget.name}</h2>
+          <p>{budget.id}</p>
           <p>Date: {new Date(budget.date).toLocaleDateString()}</p>
           <p>Location: {budget.location}</p>
           <p>Total Budget: ${budget.totalBudget.toFixed(2)}</p>

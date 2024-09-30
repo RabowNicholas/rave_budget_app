@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import BudgetOverviewForm from "./_components/BudgetOverviewForm";
 import BudgetLimitsForm from "./_components/BudgetLimitsForm";
+import { BudgetLimitData, BudgetOverviewData } from "./_components/models";
 
 export default function Page() {
   const [subpage, setSubpage] = useState<"overview" | "limits">("overview");
