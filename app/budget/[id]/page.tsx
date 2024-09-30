@@ -28,6 +28,10 @@ export default function BudgetDetails({ params }: { params: { id: string } }) {
     }
   }, [params.id]);
 
+  const handleAddPeopleClick = async () => {
+    await fetch("/api/interest/group-budget", { method: "POST" });
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -62,6 +66,7 @@ export default function BudgetDetails({ params }: { params: { id: string } }) {
       </div>
 
       <Link href={`/budget/${params.id}/expense`}>add expense</Link>
+      <button onClick={handleAddPeopleClick}>add people</button>
     </div>
   );
 }
