@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { DashboardBudgetOverview } from "./model";
+import Link from "next/link";
 
 export default function BudgetDetails({ params }: { params: { id: string } }) {
   const [budget, setBudget] = useState<DashboardBudgetOverview | undefined>();
@@ -60,7 +61,7 @@ export default function BudgetDetails({ params }: { params: { id: string } }) {
         ))}
       </div>
 
-      {/* You can add more sections here, such as expense breakdown, etc. */}
+      <Link href={`/budget/${params.id}/expense`}>add expense</Link>
     </div>
   );
 }

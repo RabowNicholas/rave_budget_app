@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { BudgetOverviewData } from "./models";
 
 export default function BudgetOverviewForm({
   onSubmitted,
