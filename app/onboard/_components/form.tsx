@@ -31,25 +31,37 @@ export default function OnboardForm() {
         const result = await response.json();
         setError(result.error || "Failed to onboard");
       } else {
-        window.location.href = redirect; // Redirect after success
+        window.location.href = redirect;
       }
     } catch (err) {
       setError("An error occurred while onboarding");
     }
   };
   return (
-    <div>
-      <div>Onboarding</div>
-      <form onSubmit={handleSubmit}>
+    <form
+      className="h-screen flex flex-col gap-6 w-full"
+      onSubmit={handleSubmit}
+    >
+      <div className="text-2xl font-bold bg-gradient-to-r from-[#A100FF] via-[#FFD700] to-[#00A676] w-fit bg-clip-text text-transparent mb-4 uppercase">
+        Onboarding
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <label className="ml-3 text-lg " htmlFor="name">
+          Name{" "}
+        </label>
         <input
+          className="px-4 py-2 rounded-lg border-2 border-transparent bg-mediumGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple placeholder-white"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Name"
         />
-        {error && <p className="text-red-500">{error}</p>}
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+      </div>
+      {error && <p className="text-red-500">{error}</p>}
+      <button className="button-primary-filled" type="submit">
+        Submit
+      </button>
+    </form>
   );
 }
