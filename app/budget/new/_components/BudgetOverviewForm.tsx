@@ -21,7 +21,7 @@ export default function BudgetOverviewForm({
   };
 
   return (
-    <div className="h-screen flex flex-col items-center">
+    <div className="h-screen flex flex-col items-center gap-6">
       <form onSubmit={handleSubmit} className="text-white flex flex-col gap-4">
         <div className="flex justify-center">
           <h1 className="text-2xl font-bold bg-gradient-to-r from-[#A100FF] via-[#FFD700] to-[#00A676] bg-clip-text text-transparent mb-4 uppercase">
