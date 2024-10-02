@@ -32,7 +32,7 @@ export default function Dashboard() {
         </div>
         <div className="space-y-6">
           {data.budgets.map((budget) => (
-            <BudgetOverviewTile budget={budget} />
+            <BudgetOverviewTile key={budget.id} budget={budget} />
           ))}
         </div>
       </div>

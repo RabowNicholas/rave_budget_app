@@ -41,7 +41,7 @@ export default function Page() {
     };
 
     sendData();
-  }, [overviewData, limitsData]);
+  }, [overviewData, limitsData, router]);
 
   const handleOverviewSubmit = (overviewData: BudgetOverviewData) => {
     setOverviewData(overviewData);
