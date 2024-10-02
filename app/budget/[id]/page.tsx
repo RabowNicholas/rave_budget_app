@@ -35,63 +35,70 @@ export default function BudgetDetails({ params }: { params: { id: string } }) {
   };
 
   if (loading) {
-    return <div className="text-center p-6">Loading...</div>;
+    return <div className="text-center p-6 text-white">Loading...</div>;
   }
 
   if (!budget) {
-    return <div className="text-center p-6">No budget found.</div>;
+    return <div className="text-center p-6 text-white">No budget found.</div>;
   }
 
   const totalSpent = budget.totalSpent.toFixed(2);
   const remainingBalance = budget.remainingBalance.toFixed(2);
 
   return (
-    <div className="flex flex-col p-4 bg-white rounded-lg shadow-lg space-y-4">
-      {/* Budget Overview Title */}
-      <h2 className="text-3xl font-semibold text-gray-800">{budget.name}</h2>
-      <p className="text-sm text-gray-600">
-        Date: {new Date(budget.date).toLocaleDateString()}
-      </p>
-      <p className="text-sm text-gray-600">Location: {budget.location}</p>
+    <div className="flex flex-col p-6 bg-shadowGray rounded-lg shadow-lg space-y-6 text-black">
+      <h2 className="text-3xl font-semibold bg-clip-text text-darkBackground">
+        {budget.name}
+      </h2>
 
-      {/* Total Budget Overview */}
       <div className="space-y-2">
-        <div className="flex justify-between text-sm text-gray-800">
+        <div className="flex justify-around">
+          <p className="text-sm text-black">
+            Date: {new Date(budget.date).toLocaleDateString()}
+          </p>
+          <p className="text-sm text-black">Location: {budget.location}</p>
+        </div>
+        <div className="flex justify-between text-sm">
           <span className="font-medium">Total Budget:</span>
-          <span className="text-green-600">
+          <span className="text-green-700">
             ${budget.totalBudget.toFixed(2)}
           </span>
         </div>
-        <div className="flex justify-between text-sm text-gray-800">
+        <div className="flex justify-between text-sm">
           <span className="font-medium">Total Spent:</span>
-          <span className="text-blue-600">${totalSpent}</span>
+          <span className="text-blue-700">${totalSpent}</span>
         </div>
-        <div className="flex justify-between text-sm text-gray-800">
+        <div className="flex justify-between text-sm">
           <span className="font-medium">Remaining Balance:</span>
-          <span className="text-red-600">${remainingBalance}</span>
+          <span className="text-red-700">${remainingBalance}</span>
         </div>
-
-        {/* Add People Button */}
-        <button
-          onClick={handleAddPeopleClick}
-          className="mt-2 button-primary-transparent"
-        >
-          <AddRounded className="text-lg mr-2" />
-          Add People
-        </button>
+        <div className="flex flex-col items-center gap-2">
+          <Link
+            href={`/budget/${params.id}/expense`}
+            className="button-primary-filled w-full text-center"
+          >
+            <AddRounded className="text-lg mr-2" />
+            Add Expense
+          </Link>
+          <button
+            onClick={handleAddPeopleClick}
+            className="button-primary-transparent w-full"
+          >
+            <AddRounded className="text-lg" />
+            Add People
+          </button>
+        </div>
       </div>
 
       {/* Category Breakdown */}
-      <div className="category-breakdown space-y-2">
-        <h3 className="text-2xl font-semibold text-gray-800">
-          Category Breakdown
-        </h3>
+      <div className="category-breakdown space-y-4">
+        <h3 className="text-2xl font-semibold">Category Breakdown</h3>
         {budget.categoryBreakdown.map((breakdown) => (
           <div
             key={breakdown.category}
-            className="flex flex-col space-y-2 border-t border-gray-200 pt-2"
+            className="flex flex-col space-y-2 border-t border-gray-600 pt-4"
           >
-            <div className="flex justify-between text-sm text-gray-800">
+            <div className="flex justify-between text-sm">
               <span className="font-medium">
                 Category: {breakdown.category}
               </span>
@@ -103,15 +110,6 @@ export default function BudgetDetails({ params }: { params: { id: string } }) {
           </div>
         ))}
       </div>
-
-      {/* Add Expense Button */}
-      <Link
-        href={`/budget/${params.id}/expense`}
-        className="mt-2 inline-block button-primary-filled text-center"
-      >
-        <AddRounded className="text-lg mr-2" />
-        Add Expense
-      </Link>
     </div>
   );
 }

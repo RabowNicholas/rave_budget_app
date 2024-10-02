@@ -9,11 +9,11 @@ export default function BudgetBar({
 }) {
   const percentageUsed = Math.min((expenseAmount / budgetedAmount) * 100, 100); // Ensure it doesn't go over 100%
 
-  let barColor = "bg-green-500";
+  let barColor = "bg-green-700";
   if (percentageUsed === 100) {
-    barColor = "bg-red-500";
+    barColor = "bg-red-700";
   } else if (percentageUsed > 80) {
-    barColor = "bg-yellow-500";
+    barColor = "bg-yellow-700";
   }
 
   return (
