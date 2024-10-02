@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import { DashboardBudgetOverview } from "./model";
+import { AddRounded } from "@mui/icons-material";
 import Link from "next/link";
+import BudgetBar from "./expense/BudgetBar";
 
 export default function BudgetDetails({ params }: { params: { id: string } }) {
   const [budget, setBudget] = useState<DashboardBudgetOverview | undefined>();
@@ -33,40 +35,83 @@ export default function BudgetDetails({ params }: { params: { id: string } }) {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="text-center p-6">Loading...</div>;
   }
 
   if (!budget) {
-    return <div>No budget found.</div>;
+    return <div className="text-center p-6">No budget found.</div>;
   }
 
-  return (
-    <div className="budget-details">
-      <h2>{budget.name}</h2>
-      <p>Date: {new Date(budget.date).toLocaleDateString()}</p>
-      <p>Location: {budget.location}</p>
-      <p>Total Budget: ${budget.totalBudget.toFixed(2)}</p>
-      <p>Total Spent: ${budget.totalSpent.toFixed(2)}</p>
-      <p>Remaining Balance: ${budget.remainingBalance.toFixed(2)}</p>
+  const totalSpent = budget.totalSpent.toFixed(2);
+  const remainingBalance = budget.remainingBalance.toFixed(2);
 
-      <div className="category-breakdown">
-        <h3>Category Breakdown</h3>
+  return (
+    <div className="flex flex-col p-4 bg-white rounded-lg shadow-lg space-y-4">
+      {/* Budget Overview Title */}
+      <h2 className="text-3xl font-semibold text-gray-800">{budget.name}</h2>
+      <p className="text-sm text-gray-600">
+        Date: {new Date(budget.date).toLocaleDateString()}
+      </p>
+      <p className="text-sm text-gray-600">Location: {budget.location}</p>
+
+      {/* Total Budget Overview */}
+      <div className="space-y-2">
+        <div className="flex justify-between text-sm text-gray-800">
+          <span className="font-medium">Total Budget:</span>
+          <span className="text-green-600">
+            ${budget.totalBudget.toFixed(2)}
+          </span>
+        </div>
+        <div className="flex justify-between text-sm text-gray-800">
+          <span className="font-medium">Total Spent:</span>
+          <span className="text-blue-600">${totalSpent}</span>
+        </div>
+        <div className="flex justify-between text-sm text-gray-800">
+          <span className="font-medium">Remaining Balance:</span>
+          <span className="text-red-600">${remainingBalance}</span>
+        </div>
+
+        {/* Add People Button */}
+        <button
+          onClick={handleAddPeopleClick}
+          className="mt-2 button-primary-transparent"
+        >
+          <AddRounded className="text-lg mr-2" />
+          Add People
+        </button>
+      </div>
+
+      {/* Category Breakdown */}
+      <div className="category-breakdown space-y-2">
+        <h3 className="text-2xl font-semibold text-gray-800">
+          Category Breakdown
+        </h3>
         {budget.categoryBreakdown.map((breakdown) => (
-          <div key={breakdown.category} className="category-item">
-            <p>Category: {breakdown.category}</p>
-            <p>Budgeted Amount: ${breakdown.budgetedAmount.toFixed(2)}</p>
-            <p>
-              Spent Amount: $
-              {breakdown.budgetedAmount
-                ? breakdown.expenseAmount.toFixed(2)
-                : 0}
-            </p>
+          <div
+            key={breakdown.category}
+            className="flex flex-col space-y-2 border-t border-gray-200 pt-2"
+          >
+            <div className="flex justify-between text-sm text-gray-800">
+              <span className="font-medium">
+                Category: {breakdown.category}
+              </span>
+            </div>
+            <BudgetBar
+              budgetedAmount={breakdown.budgetedAmount}
+              expenseAmount={breakdown.expenseAmount}
+            />
           </div>
         ))}
       </div>
 
-      <Link href={`/budget/${params.id}/expense`}>add expense</Link>
-      <button onClick={handleAddPeopleClick}>add people</button>
+      {/* Add Expense Button */}
+      <Link
+        href={`/budget/${params.id}/expense`}
+        className="mt-2 inline-block button-primary-filled text-center"
+      >
+        <AddRounded className="text-lg mr-2" />
+        Add Expense
+      </Link>
     </div>
   );
 }

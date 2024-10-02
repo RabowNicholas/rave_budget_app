@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { BudgetLimitData } from "./models";
 
@@ -52,21 +53,28 @@ export default function BudgetLimitsForm({
   };
 
   return (
-    <div className="flex flex-col text-sanJuan items-center">
+    <div className="h-screen flex flex-col items-center gap-6">
       <button
         onClick={handleBackClick}
-        className="button-primary-transparent self-start ml-6 mt-4"
+        className="button-primary-transparent self-start"
       >
-        back
+        Back
       </button>
-      <div className="text-3xl">Enter budget limits</div>
-      <form onSubmit={handleSubmit} className="flex flex-col my-6 gap-2">
-        <div className="flex flex-col">
-          <label className="ml-2" htmlFor="tickets">
+
+      <h1 className="text-2xl font-bold bg-gradient-to-r from-[#A100FF] via-[#FFD700] to-[#00A676] bg-clip-text text-transparent mb-4 uppercase">
+        Enter Budget Limits
+      </h1>
+
+      <form
+        onSubmit={handleSubmit}
+        className="text-white flex flex-col gap-4 w-full"
+      >
+        <div className="flex flex-col gap-2">
+          <label className="ml-3 text-lg " htmlFor="tickets">
             Budget for Tickets
           </label>
           <input
-            className="px-2 py-1 rounded-xl"
+            className="px-4 py-2 rounded-lg border-2 border-slateGray bg-darkGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple"
             type="number"
             id="tickets"
             value={tickets ?? undefined}
@@ -75,12 +83,12 @@ export default function BudgetLimitsForm({
           />
         </div>
 
-        <div className="flex flex-col">
-          <label className="ml-2" htmlFor="travel">
+        <div className="flex flex-col gap-2">
+          <label className="ml-3 text-lg " htmlFor="travel">
             Budget for Travel
           </label>
           <input
-            className="px-2 py-1 rounded-xl"
+            className="px-4 py-2 rounded-lg border-2 border-slateGray bg-darkGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple"
             type="number"
             id="travel"
             value={travel ?? undefined}
@@ -89,12 +97,12 @@ export default function BudgetLimitsForm({
           />
         </div>
 
-        <div className="flex flex-col">
-          <label className="ml-2" htmlFor="accommodation">
+        <div className="flex flex-col gap-2">
+          <label className="ml-3 text-lg " htmlFor="accommodation">
             Budget for Accommodation
           </label>
           <input
-            className="px-2 py-1 rounded-xl"
+            className="px-4 py-2 rounded-lg border-2 border-slateGray bg-darkGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple"
             type="number"
             id="accommodation"
             value={accommodation ?? undefined}
@@ -103,12 +111,12 @@ export default function BudgetLimitsForm({
           />
         </div>
 
-        <div className="flex flex-col">
-          <label className="ml-2" htmlFor="food">
+        <div className="flex flex-col gap-2">
+          <label className="ml-3 text-lg " htmlFor="food">
             Budget for Food & Drinks
           </label>
           <input
-            className="px-2 py-1 rounded-xl"
+            className="px-4 py-2 rounded-lg border-2 border-slateGray bg-darkGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple"
             type="number"
             id="food"
             value={food ?? undefined}
@@ -117,12 +125,12 @@ export default function BudgetLimitsForm({
           />
         </div>
 
-        <div className="flex flex-col">
-          <label className="ml-2" htmlFor="other">
+        <div className="flex flex-col gap-2">
+          <label className="ml-3 text-lg " htmlFor="other">
             Budget for Other Expenses
           </label>
           <input
-            className="px-2 py-1 rounded-xl"
+            className="px-4 py-2 rounded-lg border-2 border-slateGray bg-darkGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple"
             type="number"
             id="other"
             value={other ?? undefined}
@@ -130,10 +138,16 @@ export default function BudgetLimitsForm({
             placeholder="Enter budget for other expenses"
           />
         </div>
-        <div className="flex flex-col mt-6 gap-2 items-center">
-          <div className="text-xl">Total Budget: {totalBudget()}</div>
 
-          <button className="button-primary-filled" type="submit">
+        <div className="flex flex-col mt-6 gap-2 items-center">
+          <div className="text-xl text-white">
+            Total Budget: ${totalBudget().toFixed(2)}
+          </div>
+
+          <button
+            className="button-primary-filled self-center w-full py-3 mt-4"
+            type="submit"
+          >
             Set Budget Limits
           </button>
         </div>
