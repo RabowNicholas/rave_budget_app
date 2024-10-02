@@ -74,7 +74,7 @@ export default function BudgetLimitsForm({
             Budget for Tickets
           </label>
           <input
-            className="px-4 py-2 rounded-lg border-2 border-slateGray bg-darkGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple"
+            className="px-4 py-2 rounded-lg border-2 border-transparent bg-mediumGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple placeholder-white"
             type="number"
             id="tickets"
             value={tickets ?? undefined}
@@ -88,7 +88,7 @@ export default function BudgetLimitsForm({
             Budget for Travel
           </label>
           <input
-            className="px-4 py-2 rounded-lg border-2 border-slateGray bg-darkGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple"
+            className="px-4 py-2 rounded-lg border-2 border-transparent bg-mediumGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple placeholder-white"
             type="number"
             id="travel"
             value={travel ?? undefined}
@@ -102,7 +102,7 @@ export default function BudgetLimitsForm({
             Budget for Accommodation
           </label>
           <input
-            className="px-4 py-2 rounded-lg border-2 border-slateGray bg-darkGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple"
+            className="px-4 py-2 rounded-lg border-2 border-transparent bg-mediumGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple placeholder-white"
             type="number"
             id="accommodation"
             value={accommodation ?? undefined}
@@ -116,7 +116,7 @@ export default function BudgetLimitsForm({
             Budget for Food & Drinks
           </label>
           <input
-            className="px-4 py-2 rounded-lg border-2 border-slateGray bg-darkGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple"
+            className="px-4 py-2 rounded-lg border-2 border-transparent bg-mediumGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple placeholder-white"
             type="number"
             id="food"
             value={food ?? undefined}
@@ -130,7 +130,7 @@ export default function BudgetLimitsForm({
             Budget for Other Expenses
           </label>
           <input
-            className="px-4 py-2 rounded-lg border-2 border-slateGray bg-darkGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple"
+            className="px-4 py-2 rounded-lg border-2 border-transparent bg-mediumGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple placeholder-white"
             type="number"
             id="other"
             value={other ?? undefined}
