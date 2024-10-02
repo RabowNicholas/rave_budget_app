@@ -33,7 +33,7 @@ export default function Page() {
           throw new Error("Failed to send data");
         }
 
-        const result = await response.json();
+        await response.json();
         await router.push("/");
       } catch (error) {
         console.error("Error:", error);

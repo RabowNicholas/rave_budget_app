@@ -43,7 +43,7 @@ export async function POST(
       throw new Error(`Failed to add expense: ${errorText}`);
     }
 
-    const result = await response.json();
+    await response.json();
 
     return NextResponse.redirect(`${getAppBaseURL()}/budget/${params.id}`);
   } catch (error) {
