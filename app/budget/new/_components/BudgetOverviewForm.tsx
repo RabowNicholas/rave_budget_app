@@ -4,12 +4,16 @@ import { BudgetOverviewData } from "./models";
 
 export default function BudgetOverviewForm({
   onSubmitted,
+  overviewData,
 }: {
   onSubmitted: (overviewData: BudgetOverviewData) => void;
+  overviewData: BudgetOverviewData | undefined;
 }) {
-  const [name, setName] = useState<string | undefined>();
-  const [date, setDate] = useState<string | undefined>();
-  const [location, setLocation] = useState<string | undefined>();
+  const [name, setName] = useState<string | undefined>(overviewData?.name);
+  const [date, setDate] = useState<string | undefined>(overviewData?.date);
+  const [location, setLocation] = useState<string | undefined>(
+    overviewData?.location
+  );
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -17,11 +21,18 @@ export default function BudgetOverviewForm({
   };
 
   return (
-    <div className="flex flex-col">
-      <form onSubmit={handleSubmit} className="">
-        <div>
-          <label htmlFor="name">Festival Name</label>
+    <div className="flex flex-col items-center">
+      <form
+        onSubmit={handleSubmit}
+        className="text-sanJuan flex flex-col gap-2"
+      >
+        <div className="text-center text-2xl">Create new budget</div>
+        <div className="flex flex-col">
+          <label className="ml-3" htmlFor="name">
+            Festival Name
+          </label>
           <input
+            className="px-2 py-1 rounded-xl"
             type="text"
             id="name"
             value={name}
@@ -31,9 +42,12 @@ export default function BudgetOverviewForm({
           />
         </div>
 
-        <div>
-          <label htmlFor="date">Festival Date</label>
+        <div className="flex flex-col">
+          <label className="ml-3" htmlFor="date">
+            Festival Date
+          </label>
           <input
+            className="px-2 py-1 rounded-xl"
             type="date"
             id="date"
             value={date}
@@ -42,9 +56,12 @@ export default function BudgetOverviewForm({
           />
         </div>
 
-        <div>
-          <label htmlFor="location">Festival Location</label>
+        <div className="flex flex-col">
+          <label className="ml-3" htmlFor="location">
+            Festival Location
+          </label>
           <input
+            className="px-2 py-1 rounded-xl"
             type="text"
             id="location"
             value={location}
@@ -54,9 +71,12 @@ export default function BudgetOverviewForm({
           />
         </div>
 
-        <div>
-          <button type="submit">Create Budget</button>
-        </div>
+        <button
+          className="button-primary-filled self-center mt-6"
+          type="submit"
+        >
+          Create Budget
+        </button>
       </form>
     </div>
   );

@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { BudgetLimitData } from "./models";
 
 export default function BudgetLimitsForm({
   onSubmitted,
+  onBack,
 }: {
   onSubmitted: (data: BudgetLimitData[]) => void;
+  onBack: () => void;
 }) {
   const [tickets, setTickets] = useState<number | null>(null);
   const [travel, setTravel] = useState<number | null>(null);
@@ -44,12 +47,26 @@ export default function BudgetLimitsForm({
     );
   };
 
+  const handleBackClick = () => {
+    onBack();
+  };
+
   return (
-    <div className="flex flex-col">
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="tickets">Budget for Tickets</label>
+    <div className="flex flex-col text-sanJuan items-center">
+      <button
+        onClick={handleBackClick}
+        className="button-primary-transparent self-start ml-6 mt-4"
+      >
+        back
+      </button>
+      <div className="text-3xl">Enter budget limits</div>
+      <form onSubmit={handleSubmit} className="flex flex-col my-6 gap-2">
+        <div className="flex flex-col">
+          <label className="ml-2" htmlFor="tickets">
+            Budget for Tickets
+          </label>
           <input
+            className="px-2 py-1 rounded-xl"
             type="number"
             id="tickets"
             value={tickets ?? undefined}
@@ -58,9 +75,12 @@ export default function BudgetLimitsForm({
           />
         </div>
 
-        <div>
-          <label htmlFor="travel">Budget for Travel</label>
+        <div className="flex flex-col">
+          <label className="ml-2" htmlFor="travel">
+            Budget for Travel
+          </label>
           <input
+            className="px-2 py-1 rounded-xl"
             type="number"
             id="travel"
             value={travel ?? undefined}
@@ -69,9 +89,12 @@ export default function BudgetLimitsForm({
           />
         </div>
 
-        <div>
-          <label htmlFor="accommodation">Budget for Accommodation</label>
+        <div className="flex flex-col">
+          <label className="ml-2" htmlFor="accommodation">
+            Budget for Accommodation
+          </label>
           <input
+            className="px-2 py-1 rounded-xl"
             type="number"
             id="accommodation"
             value={accommodation ?? undefined}
@@ -80,9 +103,12 @@ export default function BudgetLimitsForm({
           />
         </div>
 
-        <div>
-          <label htmlFor="food">Budget for Food & Drinks</label>
+        <div className="flex flex-col">
+          <label className="ml-2" htmlFor="food">
+            Budget for Food & Drinks
+          </label>
           <input
+            className="px-2 py-1 rounded-xl"
             type="number"
             id="food"
             value={food ?? undefined}
@@ -91,9 +117,12 @@ export default function BudgetLimitsForm({
           />
         </div>
 
-        <div>
-          <label htmlFor="other">Budget for Other Expenses</label>
+        <div className="flex flex-col">
+          <label className="ml-2" htmlFor="other">
+            Budget for Other Expenses
+          </label>
           <input
+            className="px-2 py-1 rounded-xl"
             type="number"
             id="other"
             value={other ?? undefined}
@@ -101,11 +130,12 @@ export default function BudgetLimitsForm({
             placeholder="Enter budget for other expenses"
           />
         </div>
+        <div className="flex flex-col mt-6 gap-2 items-center">
+          <div className="text-xl">Total Budget: {totalBudget()}</div>
 
-        <div>Total Budget: {totalBudget()}</div>
-
-        <div>
-          <button type="submit">Set Budget Limits</button>
+          <button className="button-primary-filled" type="submit">
+            Set Budget Limits
+          </button>
         </div>
       </form>
     </div>

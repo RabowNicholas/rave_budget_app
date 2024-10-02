@@ -1,0 +1,9 @@
+@tailwind base;
+
+.button-primary-filled {
+  @apply bg-sanJuan text-white font-bold py-2 px-4 rounded shadow hover:bg-sanJuan hover:scale-105 transition duration-300 uppercase;
+}
+
+.button-primary-transparent {
+  @apply bg-transparent text-sanJuan border-2 border-sanJuan font-bold py-2 px-4 rounded shadow hover:scale-105 transition duration-300 uppercase;
+}

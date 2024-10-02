@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import BudgetOverviewForm from "./_components/BudgetOverviewForm";
 import BudgetLimitsForm from "./_components/BudgetLimitsForm";
 import { BudgetLimitData, BudgetOverviewData } from "./_components/models";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const [subpage, setSubpage] = useState<"overview" | "limits">("overview");
@@ -10,6 +11,7 @@ export default function Page() {
     BudgetOverviewData | undefined
   >();
   const [limitsData, setLimitsData] = useState<BudgetLimitData[] | undefined>();
+  const router = useRouter();
 
   useEffect(() => {
     const sendData = async () => {
@@ -32,14 +34,13 @@ export default function Page() {
         }
 
         const result = await response.json();
-        console.log("Success:", result);
+        await router.push("/");
       } catch (error) {
         console.error("Error:", error);
       }
     };
 
     sendData();
-    //TODO: navigate away
   }, [overviewData, limitsData]);
 
   const handleOverviewSubmit = (overviewData: BudgetOverviewData) => {
@@ -57,12 +58,14 @@ export default function Page() {
       content = (
         <BudgetOverviewForm
           onSubmitted={(overviewData) => handleOverviewSubmit(overviewData)}
+          overviewData={overviewData}
         />
       );
       break;
     case "limits":
       content = (
         <BudgetLimitsForm
+          onBack={() => setSubpage("overview")}
           onSubmitted={(limitsData) => handleLimitsSubmit(limitsData)}
         />
       );
