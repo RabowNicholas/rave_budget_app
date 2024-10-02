@@ -8,8 +8,11 @@ function SignInPage() {
   const redirect = searchParams.get("rd") ?? "/";
 
   return (
-    <div>
-      <button onClick={() => signIn("auth0", { callbackUrl: redirect })}>
+    <div className="flex items-center justify-center h-screen">
+      <button
+        className="button-primary-filled"
+        onClick={() => signIn("auth0", { callbackUrl: redirect })}
+      >
         Sign in with Phone Number
       </button>
     </div>
