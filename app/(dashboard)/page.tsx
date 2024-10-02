@@ -1,44 +1,41 @@
 "use client";
 import { useEffect, useState } from "react";
 import { DashboardData } from "./model";
+import BudgetOverviewTile from "./BudgetOverviewTile";
 
 export default function Dashboard() {
   const [data, setData] = useState<DashboardData | undefined>();
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch("/api/dashboard");
       const data = await response.json();
       setData(data);
+      setLoading(false);
     };
 
     fetchData();
   }, []);
 
-  return (
-    <div>
-      {data?.budgets.map((budget) => (
-        <div key={budget.id} className="budget-container">
-          <h2>{budget.name}</h2>
-          <p>{budget.id}</p>
-          <p>Date: {new Date(budget.date).toLocaleDateString()}</p>
-          <p>Location: {budget.location}</p>
-          <p>Total Budget: ${budget.totalBudget.toFixed(2)}</p>
-          <p>Total Spent: ${budget.totalSpent.toFixed(2)}</p>
-          <p>Remaining Balance: ${budget.remainingBalance.toFixed(2)}</p>
+  if (loading) {
+    return <div>loading...</div>;
+  }
 
-          <div className="category-breakdown">
-            <h3>Category Breakdown</h3>
-            {budget.categoryBreakdown.map((breakdown) => (
-              <div key={breakdown.category} className="category-item">
-                <p>Category: {breakdown.category}</p>
-                <p>Budgeted Amount: ${breakdown.budgetedAmount.toFixed(2)}</p>
-                <p>Spent Amount: ${breakdown.expenseAmount.toFixed(2)}</p>
-              </div>
-            ))}
-          </div>
+  if (!data) {
+    return <div>error fetching dashboard</div>;
+  } else {
+    return (
+      <div className="flex flex-col">
+        <div className="text-2xl font-bold bg-gradient-to-r from-[#A100FF] via-[#FFD700] to-[#00A676] w-fit bg-clip-text text-transparent mb-4 uppercase">
+          Budgets
         </div>
-      ))}
-    </div>
-  );
+        <div className="space-y-6">
+          {data.budgets.map((budget) => (
+            <BudgetOverviewTile budget={budget} />
+          ))}
+        </div>
+      </div>
+    );
+  }
 }
