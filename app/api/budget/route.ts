@@ -18,27 +18,34 @@ export async function POST(req: NextRequest) {
         amount: limit.amount,
       }));
 
-    const response = await fetch(`${getAPIBaseURL()}/budgets`, {
-      method: "POST",
-      body: JSON.stringify({
-        overview: {
-          name: data.overview.name,
-          date: data.overview.date,
-          location: data.overview.location,
+    const apiBaseUrl = getAPIBaseURL();
+    if (apiBaseUrl !== "demo") {
+      const response = await fetch(`${getAPIBaseURL()}/budgets`, {
+        method: "POST",
+        body: JSON.stringify({
+          overview: {
+            name: data.overview.name,
+            date: data.overview.date,
+            location: data.overview.location,
+          },
+          limits: limits,
+        }),
+        headers: {
+          "User-Id": userId,
+          "Content-Type": "application/json",
         },
-        limits: limits,
-      }),
-      headers: {
-        "User-Id": userId,
-        "Content-Type": "application/json",
-      },
-    });
+      });
 
-    if (!response.ok) {
-      throw new Error(`Failed to post budget data: ${response.statusText}`);
+      if (!response.ok) {
+        throw new Error(`Failed to post budget data: ${response.statusText}`);
+      }
+
+      return NextResponse.json({
+        message: "Budget data submitted successfully",
+      });
+    } else {
+      return NextResponse.json({ message: "This is a demo" });
     }
-
-    return NextResponse.json({ message: "Budget data submitted successfully" });
   } catch (error) {
     console.error("Error posting budget data:", error);
     return NextResponse.json(

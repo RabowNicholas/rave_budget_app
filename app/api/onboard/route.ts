@@ -11,20 +11,26 @@ export async function PUT(req: NextRequestWithAuth) {
     }
 
     const data = await req.json();
-    const response = await fetch(`${getAPIBaseURL()}/users/onboard`, {
-      method: "PUT",
-      body: JSON.stringify({ phone: token.name, name: data.name }),
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
 
-    if (!response.ok) {
-      throw new Error("Failed to update user onboarding");
+    const apiBaseUrl = getAPIBaseURL();
+    if (apiBaseUrl !== "demo") {
+      const response = await fetch(`${getAPIBaseURL()}/users/onboard`, {
+        method: "PUT",
+        body: JSON.stringify({ phone: token.name, name: data.name }),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update user onboarding");
+      }
+
+      return NextResponse.redirect(data.redirect);
+    } else {
+      return NextResponse.redirect(data.redirect);
     }
-
-    return NextResponse.redirect(data.redirect);
   } catch (error: unknown) {
     let errorMessage = "An unexpected error occurred";
 

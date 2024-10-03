@@ -17,14 +17,19 @@ export async function POST(
       throw new Error("User id not found");
     }
 
-    await fetch(`${getAPIBaseURL()}/interest/feature/${params.feature}`, {
-      method: "POST",
-      headers: {
-        "User-Id": userId,
-        "Content-Type": "application/json",
-      },
-    });
-    return NextResponse.json("interest submitted");
+    const apiBaseUrl = getAPIBaseURL();
+    if (apiBaseUrl !== "demo") {
+      await fetch(`${getAPIBaseURL()}/interest/feature/${params.feature}`, {
+        method: "POST",
+        headers: {
+          "User-Id": userId,
+          "Content-Type": "application/json",
+        },
+      });
+      return NextResponse.json("interest submitted");
+    } else {
+      return NextResponse.json("this is a demo");
+    }
   } catch (error: unknown) {
     let errorMessage = "An unexpected error occurred";
 

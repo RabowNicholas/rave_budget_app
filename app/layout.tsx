@@ -12,9 +12,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const env = process.env.NEXT_PUBLIC_ENVIRONMENT;
   return (
     <html lang="en">
       <body className="bg-darkBackground p-6 text-lightGrayText">
+        {env === "demo" && (
+          <div className="text-xl text-center absolute z-10 bg-white rounded-md text-darkBackground px-2 py-1">
+            This is a demo
+          </div>
+        )}
         {children}
       </body>
     </html>

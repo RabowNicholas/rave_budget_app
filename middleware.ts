@@ -8,15 +8,23 @@ import { NextRequestWithAuth } from "next-auth/middleware";
 const protectedPathPatterns: RegExp[] = [/^\/dashboard/, /^\/budget\/*/];
 
 const isProtectedPath = (url: string): boolean => {
+  if (process.env.NEXT_PUBLIC_ENVIRONMENT === "demo") {
+    return false;
+  }
   return protectedPathPatterns.some((pattern) => pattern.test(url));
 };
 
 const userIsOnboarded = async (token: JWT) => {
-  const res = await fetch(`${getAPIBaseURL()}/users/${token.name}`, {
-    method: "GET",
-  });
-  const data = await res.json();
-  return data.onboarded;
+  const apiBaseUrl = getAPIBaseURL();
+  if (apiBaseUrl !== "demo") {
+    const res = await fetch(`${apiBaseUrl}/users/${token.name}`, {
+      method: "GET",
+    });
+    const data = await res.json();
+    return data.onboarded;
+  } else {
+    return true;
+  }
 };
 
 export default async function middleware(req: NextRequestWithAuth) {

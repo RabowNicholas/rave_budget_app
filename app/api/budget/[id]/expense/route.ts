@@ -23,29 +23,31 @@ export async function POST(
       );
     }
 
-    const response = await fetch(
-      `${getAPIBaseURL()}/budgets/${params.id}/expense`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "User-Id": userId,
-        },
-        body: JSON.stringify({
-          amount,
-          category,
-        }),
+    const apiBaseUrl = getAPIBaseURL();
+    if (apiBaseUrl !== "demo") {
+      const response = await fetch(
+        `${getAPIBaseURL()}/budgets/${params.id}/expense`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "User-Id": userId,
+          },
+          body: JSON.stringify({
+            amount,
+            category,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to add expense: ${errorText}`);
       }
-    );
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Failed to add expense: ${errorText}`);
+      return NextResponse.redirect(`${getAppBaseURL()}/budget/${params.id}`);
+    } else {
+      return NextResponse.redirect(`${getAppBaseURL()}/budget/${params.id}`);
     }
-
-    await response.json();
-
-    return NextResponse.redirect(`${getAppBaseURL()}/budget/${params.id}`);
   } catch (error) {
     console.error("Error adding expense:", error);
     return NextResponse.json(

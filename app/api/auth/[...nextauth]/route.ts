@@ -17,11 +17,17 @@ const handler = NextAuth({
   callbacks: {
     async jwt({ user, trigger, token }) {
       if (trigger === "signIn" || trigger == "signUp") {
-        const response = await fetch(`${getAPIBaseURL()}/users/${user.name}`, {
-          method: "POST",
-        });
-        const data = await response.json();
-        token.sub = data.id;
+        const apiBaseUrl = getAPIBaseURL();
+        if (apiBaseUrl !== "demo") {
+          const response = await fetch(
+            `${getAPIBaseURL()}/users/${user.name}`,
+            {
+              method: "POST",
+            }
+          );
+          const data = await response.json();
+          token.sub = data.id;
+        }
       }
       return token;
     },
