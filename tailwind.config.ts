@@ -19,6 +19,8 @@ module.exports = {
         brightCoral: "#FF6A6A", // For playful accents and highlights
         teal: "#00F9FF", // Playful and experimental accent
         darkBackground: "#181818", // Dark background for the app
+        background: "#202020",
+        lightBackground: "#4D4D4D",
         lightGrayText: "#E0E0E0", // Text on dark background
         whiteText: "#FFFFFF", // For bright text on darker backgrounds
         purpleGradientStart: "#6A0DAD", // Gradient start for buttons or backgrounds
