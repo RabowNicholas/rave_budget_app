@@ -9,20 +9,20 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const token = await getToken({ req });
-    if (!token) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const userId = token?.sub;
-    if (!userId) {
-      throw new Error("User id not found");
-    }
-
-    const { id } = params;
-
     const apiBaseUrl = getAPIBaseURL();
     if (apiBaseUrl !== "demo") {
+      const token = await getToken({ req });
+      if (!token) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
+
+      const userId = token?.sub;
+      if (!userId) {
+        throw new Error("User id not found");
+      }
+
+      const { id } = params;
+
       const response = await fetch(`${getAPIBaseURL()}/budgets/${id}`, {
         method: "GET",
         headers: {

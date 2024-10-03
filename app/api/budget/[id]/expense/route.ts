@@ -8,23 +8,22 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
-    const token = await getToken({ req });
-    const userId = token?.sub;
-    if (!userId) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const { amount, category } = await req.json();
-
-    if (!amount || !category) {
-      return NextResponse.json(
-        { error: "Amount and category are required fields" },
-        { status: 400 }
-      );
-    }
-
     const apiBaseUrl = getAPIBaseURL();
     if (apiBaseUrl !== "demo") {
+      const token = await getToken({ req });
+      const userId = token?.sub;
+      if (!userId) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
+
+      const { amount, category } = await req.json();
+
+      if (!amount || !category) {
+        return NextResponse.json(
+          { error: "Amount and category are required fields" },
+          { status: 400 }
+        );
+      }
       const response = await fetch(
         `${getAPIBaseURL()}/budgets/${params.id}/expense`,
         {

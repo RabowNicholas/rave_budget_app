@@ -5,15 +5,15 @@ import { NextResponse } from "next/server";
 
 export async function PUT(req: NextRequestWithAuth) {
   try {
-    const token = await getToken({ req });
-    if (!token) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const data = await req.json();
-
     const apiBaseUrl = getAPIBaseURL();
     if (apiBaseUrl !== "demo") {
+      const token = await getToken({ req });
+      if (!token) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
+
+      const data = await req.json();
+
       const response = await fetch(`${getAPIBaseURL()}/users/onboard`, {
         method: "PUT",
         body: JSON.stringify({ phone: token.name, name: data.name }),
@@ -29,7 +29,7 @@ export async function PUT(req: NextRequestWithAuth) {
 
       return NextResponse.redirect(data.redirect);
     } else {
-      return NextResponse.redirect(data.redirect);
+      return NextResponse.redirect("/");
     }
   } catch (error: unknown) {
     let errorMessage = "An unexpected error occurred";

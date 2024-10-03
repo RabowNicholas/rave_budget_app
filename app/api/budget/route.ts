@@ -4,22 +4,22 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const token = await getToken({ req });
-    const userId = token?.sub;
-    if (!userId) {
-      throw new Error("User id not found");
-    }
-    const data = await req.json();
-
-    const limits = data.limits
-      .filter((limit: { amount: number | null }) => limit.amount !== null)
-      .map((limit: { category: string; amount: number }) => ({
-        category: limit.category,
-        amount: limit.amount,
-      }));
-
     const apiBaseUrl = getAPIBaseURL();
     if (apiBaseUrl !== "demo") {
+      const token = await getToken({ req });
+      const userId = token?.sub;
+      if (!userId) {
+        throw new Error("User id not found");
+      }
+      const data = await req.json();
+
+      const limits = data.limits
+        .filter((limit: { amount: number | null }) => limit.amount !== null)
+        .map((limit: { category: string; amount: number }) => ({
+          category: limit.category,
+          amount: limit.amount,
+        }));
+
       const response = await fetch(`${getAPIBaseURL()}/budgets`, {
         method: "POST",
         body: JSON.stringify({
