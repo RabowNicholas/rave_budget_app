@@ -2,32 +2,32 @@
 
 /* Primary filled button */
 .button-primary-filled {
-  @apply bg-vibrantPurple text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-purpleGradientStart hover:scale-105 transition duration-300 uppercase;
+  @apply bg-vibrantPurple text-white font-bold py-2 px-4 rounded-lg shadow-md uppercase;
 }
 
 /* Primary transparent button */
 .button-primary-transparent {
-  @apply bg-transparent text-vibrantPurple border-2 border-vibrantPurple font-bold py-2 px-4 rounded-lg shadow-md hover:scale-105 hover:bg-vibrantPurple hover:text-white transition duration-300 uppercase;
+  @apply bg-transparent text-vibrantPurple border-2 border-vibrantPurple font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 uppercase;
 }
 
 /* Secondary button with bright coral accents */
 .button-secondary {
-  @apply bg-brightCoral text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-brightCoral hover:scale-105 transition duration-300 uppercase;
+  @apply bg-brightCoral text-white font-bold py-2 px-4 rounded-lg shadow-md uppercase;
 }
 
 /* Gradient button */
 .button-gradient {
-  @apply bg-purple-gradient text-white font-bold py-2 px-4 rounded-lg shadow-md hover:scale-105 transition duration-300 uppercase;
+  @apply bg-purple-gradient text-white font-bold py-2 px-4 rounded-lg shadow-md uppercase;
 }
 
 /* Large button */
 .button-large {
-  @apply bg-vibrantPurple text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:bg-purpleGradientStart hover:scale-105 transition duration-300 uppercase;
+  @apply bg-vibrantPurple text-white font-bold py-4 px-8 rounded-lg shadow-lg uppercase;
 }
 
 /* Outline button with teal accents */
 .button-outline-teal {
-  @apply bg-transparent text-teal border-2 border-teal font-bold py-2 px-4 rounded-lg shadow-md hover:scale-105 hover:bg-teal hover:text-white transition duration-300 uppercase;
+  @apply bg-transparent text-teal border-2 border-teal font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 uppercase;
 }
 
 /* Disabled button style */
@@ -37,10 +37,10 @@
 
 /* Icon button for small actions */
 .button-icon {
-  @apply bg-transparent text-vibrantPurple border-2 border-transparent font-bold py-2 px-4 rounded-full shadow-md hover:bg-vibrantPurple hover:text-white hover:border-vibrantPurple transition duration-300 uppercase;
+  @apply bg-transparent text-vibrantPurple border-2 border-transparent font-bold py-2 px-4 rounded-full shadow-md transition duration-300 uppercase;
 }
 
 /* Button with large text */
 .button-large-text {
-  @apply bg-vibrantPurple text-white font-extrabold text-lg py-3 px-6 rounded-lg shadow-md hover:bg-purpleGradientStart hover:scale-105 transition duration-300 uppercase;
+  @apply bg-vibrantPurple text-white font-extrabold text-lg py-3 px-6 rounded-lg shadow-md uppercase;
 }
