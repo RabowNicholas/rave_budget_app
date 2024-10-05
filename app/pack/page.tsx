@@ -17,7 +17,7 @@ export default function PackingListInterestPage() {
           Your Ultimate Festival Packing List Generator
         </h1>
         <p className="text-lg text-gray-300">
-          Struggling with packing for festivals? We're working on a tool to
+          Struggling with packing for festivals? We&apos;re working on a tool to
           simplify the process—no more forgetting essentials!
         </p>
       </div>
@@ -31,7 +31,7 @@ export default function PackingListInterestPage() {
           </li>
           <li>
             <strong>Never forget the essentials:</strong> A smart tool that
-            keeps you prepared—whether it's outfits, gear, or accessories.
+            keeps you prepared—whether it&apos;s outfits, gear, or accessories.
           </li>
           <li>
             <strong>Pre-festival reminders:</strong> Receive notifications about

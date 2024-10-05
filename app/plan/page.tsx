@@ -23,8 +23,8 @@ export default function PlanningHubInterestPage() {
         </h1>
         <p className="text-lg text-gray-300">
           All your festival essentials—tickets, flights, accommodations, and
-          more—all in one place. We're working on a tool to help you plan it
-          all!
+          more—all in one place. We&apos;re working on a tool to help you plan
+          it all!
         </p>
       </div>
 

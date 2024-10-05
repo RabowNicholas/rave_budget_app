@@ -1,14 +1,7 @@
 "use client";
 import {
-  AccountBalanceWallet,
-  AttachMoney,
-  AttachMoneyRounded,
-  CalendarToday,
   CalendarTodayRounded,
-  Checkroom,
-  EventNote,
   HomeRounded,
-  Luggage,
   LuggageRounded,
   PersonRounded,
 } from "@mui/icons-material";
