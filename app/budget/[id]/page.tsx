@@ -84,7 +84,7 @@ export default function BudgetDetails({ params }: { params: { id: string } }) {
             onClick={handleAddPeopleClick}
             className="button-primary-transparent w-full"
           >
-            <AddRounded className="text-lg" />
+            <AddRounded className="text-lg mr-2" />
             Add People
           </button>
         </div>

@@ -15,7 +15,7 @@ export default function BudgetOverviewTile({
         {budget.name}
       </h2>
 
-      <div className="space-y-2">
+      <div className="flex flex-col gap-2">
         <div className="flex justify-between">
           <p className="text-sm text-black">
             {new Date(budget.date).toLocaleDateString()}
@@ -38,7 +38,7 @@ export default function BudgetOverviewTile({
         </div>
 
         <Link href={`/budget/${budget.id}`}>
-          <button className="button-primary-filled w-full text-center">
+          <button className="button-primary-transparent w-full text-center">
             View Details
           </button>
         </Link>
