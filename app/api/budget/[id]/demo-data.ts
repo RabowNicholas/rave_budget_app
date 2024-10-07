@@ -1,4 +1,4 @@
-import { DashboardBudgetOverview } from "@/app/budget/[id]/model";
+import { DashboardBudgetOverview } from "@/app/(app)/budget/[id]/model";
 
 export const demoBudget: DashboardBudgetOverview = {
   id: "id",

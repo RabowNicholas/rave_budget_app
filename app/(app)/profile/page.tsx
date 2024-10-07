@@ -1,5 +1,6 @@
 "use client";
 
+import { signOut } from "next-auth/react";
 import { useState, useEffect } from "react";
 
 export default function ProfilePage() {
@@ -62,6 +63,10 @@ export default function ProfilePage() {
     );
   }
 
+  const handleSignOutClick = async () => {
+    await signOut();
+  };
+
   return (
     <div className="flex flex-col p-6 bg-shadowGray rounded-lg shadow-lg space-y-6 text-black">
       <h2 className="text-3xl font-semibold bg-clip-text text-darkBackground">
@@ -99,6 +104,13 @@ export default function ProfilePage() {
           </div>
         </div>
       )}
+
+      <button
+        onClick={handleSignOutClick}
+        className="button-primary-transparent"
+      >
+        sign out
+      </button>
     </div>
   );
 }

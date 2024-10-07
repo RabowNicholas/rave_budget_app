@@ -4,12 +4,33 @@ import { getAPIBaseURL } from "./utils/ApiHelper";
 import { getToken, JWT } from "next-auth/jwt";
 import { NextRequestWithAuth } from "next-auth/middleware";
 
-const protectedPathPatterns: RegExp[] = [/^\/dashboard/, /^\/budget\/*/];
+const protectedPathPatterns: RegExp[] = [
+  /^\/$/,
+  /^\/budget/,
+  /^\/plan/,
+  /^\/pack/,
+  /^\/profile/,
+];
+
+// Add the routes that should always be accessible
+const alwaysAllowedPaths: RegExp[] = [
+  /^\/api\//, // Allow all API routes
+  /^\/static\//, // Allow all static routes
+  /^\/public\//, // Allow public routes, if applicable
+  /^\/signIn$/, // Always allow the sign-in page
+];
 
 const isProtectedPath = (url: string): boolean => {
   if (process.env.NEXT_PUBLIC_ENVIRONMENT === "demo") {
-    return false;
+    return false; // Allow all paths in demo environment
   }
+
+  // Check if the path is in the always allowed paths
+  if (alwaysAllowedPaths.some((pattern) => pattern.test(url))) {
+    return false; // Allow this path without any checks
+  }
+
+  // Check if the path is in the protected paths
   return protectedPathPatterns.some((pattern) => pattern.test(url));
 };
 
@@ -34,9 +55,13 @@ export default async function middleware(req: NextRequestWithAuth) {
     if (!token) {
       return NextResponse.redirect(`${getAppBaseURL()}/signIn?rd=${rd}`);
     }
-    if (!userIsOnboarded(token)) {
+    if (
+      !(await userIsOnboarded(token)) &&
+      !req.nextUrl.pathname.startsWith("/onboard")
+    ) {
       return NextResponse.redirect(`${getAppBaseURL()}/onboard?rd=${rd}`);
     }
   }
+
   return NextResponse.next();
 }

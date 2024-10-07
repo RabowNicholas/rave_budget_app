@@ -33,7 +33,7 @@ export default function Dashboard() {
           Budgets
         </div>
         <Link
-          href="/budgets/new"
+          href="/budget/new"
           className="button-primary-filled w-fit self-end mb-4"
         >
           <AddRounded className="text-lg mr-2" />

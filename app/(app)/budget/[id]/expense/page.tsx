@@ -1,13 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
 import { DashboardBudgetOverview } from "../model";
+import { useRouter } from "next/navigation";
 
 export default function Page({ params }: { params: { id: string } }) {
   const [budget, setBudget] = useState<DashboardBudgetOverview | undefined>();
   const [loading, setLoading] = useState(true);
   const [amount, setAmount] = useState<number | undefined>();
-  const [category, setCategory] = useState<string | undefined>();
+  const [category, setCategory] = useState<string>("none");
   const [error, setError] = useState<string | undefined>();
+
+  const router = useRouter();
 
   useEffect(() => {
     const fetchBudgetData = async () => {
@@ -32,7 +35,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!amount || !category) {
+    if (!amount || category === "none") {
       setError("Please fill in all fields.");
       return;
     }
@@ -50,7 +53,7 @@ export default function Page({ params }: { params: { id: string } }) {
         throw new Error("Failed to add expense");
       }
 
-      await response.json();
+      router.push(`/budget/${params.id}`);
     } catch (error) {
       setError("Failed to add expense");
       console.error(error);
@@ -101,7 +104,7 @@ export default function Page({ params }: { params: { id: string } }) {
             onChange={(e) => setCategory(e.target.value)}
             required
           >
-            <option value="" hidden disabled>
+            <option value="none" disabled>
               Select a category
             </option>
             {budget.categoryBreakdown.map((breakdown) => (

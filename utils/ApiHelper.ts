@@ -4,9 +4,7 @@ export function getAPIBaseURL() {
     return "http://localhost:8000";
   } else if (env === "demo") {
     return "demo";
-  } else if (env === "test") {
-    //return test
   } else if (env === "prod") {
-    //return prod
+    return "https://immense-sands-06740-eb46ef547076.herokuapp.com/";
   }
 }
