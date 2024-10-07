@@ -125,7 +125,8 @@ export default function BudgetDetails({ params }: { params: { id: string } }) {
               Coming Soon!
             </h2>
             <p className="text-darkBackground">
-              This feature is coming soon! We'll let you know when it's done.
+              This feature is coming soon! We&apos;ll let you know when
+              it&apos;s done.
             </p>
           </div>
         </div>
