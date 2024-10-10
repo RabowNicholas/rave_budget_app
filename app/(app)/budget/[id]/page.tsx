@@ -53,13 +53,13 @@ export default function BudgetDetails({ params }: { params: { id: string } }) {
 
   return (
     <div>
-      <div className="flex flex-col p-6 bg-shadowGray rounded-lg shadow-lg space-y-6 text-black">
+      <div className="flex flex-col p-6 bg-shadowGray rounded-lg shadow-lg gap-3 text-black">
         <h2 className="text-3xl font-semibold bg-clip-text text-darkBackground">
           {budget.name}
         </h2>
 
         <div className="space-y-2">
-          <div className="flex justify-around">
+          <div className="flex justify-between">
             <p className="text-sm text-black">
               Date: {new Date(budget.date).toLocaleDateString()}
             </p>

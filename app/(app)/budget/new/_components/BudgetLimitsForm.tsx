@@ -53,7 +53,7 @@ export default function BudgetLimitsForm({
   };
 
   return (
-    <div className="h-screen flex flex-col items-center gap-6">
+    <div className="flex flex-col items-center gap-4">
       <button
         onClick={handleBackClick}
         className="button-primary-transparent self-start"
@@ -67,7 +67,7 @@ export default function BudgetLimitsForm({
 
       <form
         onSubmit={handleSubmit}
-        className="text-white flex flex-col gap-4 w-full"
+        className="text-white flex flex-col gap-4 w-full "
       >
         <div className="flex flex-col gap-2">
           <label className="ml-3 text-lg " htmlFor="tickets">
@@ -139,7 +139,7 @@ export default function BudgetLimitsForm({
           />
         </div>
 
-        <div className="flex flex-col mt-6 gap-2 items-center">
+        <div className="flex flex-col gap-2 items-center">
           <div className="text-xl text-white">
             Total Budget: ${totalBudget().toFixed(2)}
           </div>

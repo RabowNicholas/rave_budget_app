@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import BudgetOverviewForm from "./_components/BudgetOverviewForm";
 import BudgetLimitsForm from "./_components/BudgetLimitsForm";
+import BudgetCreationStepIndicator from "./_components/BudgetCreationStepIndiciator";
 import { BudgetLimitData, BudgetOverviewData } from "./_components/models";
 import { useRouter } from "next/navigation";
 
@@ -72,5 +73,15 @@ export default function Page() {
       break;
   }
 
-  return <div>{content}</div>;
+  return (
+    <div>
+      {content}
+      <div className="absolute w-[90%] justify-center flex bottom-6">
+        <BudgetCreationStepIndicator
+          currentStep={subpage === "overview" ? 0 : 1}
+          totalSteps={2}
+        />
+      </div>
+    </div>
+  );
 }

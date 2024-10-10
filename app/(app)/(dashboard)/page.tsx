@@ -40,9 +40,22 @@ export default function Dashboard() {
           add new budget
         </Link>
         <div className="space-y-6">
-          {data.budgets.map((budget) => (
-            <BudgetOverviewTile key={budget.id} budget={budget} />
-          ))}
+          {data.budgets.length === 0 ? (
+            <p className="text-lg text-center">
+              looks like you&apos;re just getting started.{" "}
+              <strong className="text-mutedLavender">festfund</strong> helps you{" "}
+              <strong className="text-mutedLavender">plan and track</strong>{" "}
+              every festival expense, from tickets and travel to food and
+              merch—so you don&apos;t have to stress about overspending. get
+              your{" "}
+              <strong className="text-mutedLavender">budget set up now</strong>{" "}
+              and let us handle the math while you enjoy the good times!
+            </p>
+          ) : (
+            data.budgets.map((budget) => (
+              <BudgetOverviewTile key={budget.id} budget={budget} />
+            ))
+          )}
         </div>
       </div>
     );
