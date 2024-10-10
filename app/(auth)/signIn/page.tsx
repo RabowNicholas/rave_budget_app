@@ -8,13 +8,26 @@ function SignInPage() {
   const redirect = searchParams.get("rd") ?? "/";
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <button
-        className="button-primary-filled"
-        onClick={() => signIn("auth0", { callbackUrl: redirect })}
-      >
-        Sign in with Phone Number
-      </button>
+    <div className="relative h-screen w-screen">
+      <video
+        src="./assets/hero.mp4"
+        className="absolute top-0 left-0 w-full h-full object-cover"
+        autoPlay
+        muted
+        loop
+      ></video>
+      <div className="flex flex-col gap-8 absolute p-10 bottom-10 w-full text-center z-10">
+        <h1 className="text-5xl ">
+          this is <strong className="text-mutedLavender"> festfund</strong>
+        </h1>
+        <p className="text-lg">we're here to help you attend more festivals.</p>
+        <button
+          className="button-primary-filled"
+          onClick={() => signIn("auth0", { callbackUrl: redirect })}
+        >
+          Sign in with Phone Number
+        </button>
+      </div>
     </div>
   );
 }
