@@ -20,7 +20,9 @@ function SignInPage() {
         <h1 className="text-5xl ">
           this is <strong className="text-mutedLavender"> festfund</strong>
         </h1>
-        <p className="text-lg">we're here to help you attend more festivals.</p>
+        <p className="text-lg">
+          we&apos;re here to help you attend more festivals.
+        </p>
         <button
           className="button-primary-filled"
           onClick={() => signIn("auth0", { callbackUrl: redirect })}
