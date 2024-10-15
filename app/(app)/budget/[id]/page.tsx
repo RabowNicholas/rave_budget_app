@@ -52,7 +52,7 @@ export default function BudgetDetails({ params }: { params: { id: string } }) {
   const remainingBalance = budget.remainingBalance.toFixed(2);
 
   return (
-    <div>
+    <div className="lg:m-8 w-full">
       <div className="flex flex-col p-6 bg-shadowGray rounded-lg shadow-lg gap-3 text-black">
         <h2 className="text-3xl font-semibold bg-clip-text text-darkBackground">
           {budget.name}
@@ -79,7 +79,7 @@ export default function BudgetDetails({ params }: { params: { id: string } }) {
             <span className="font-medium">Remaining Balance:</span>
             <span className="text-red-700">${remainingBalance}</span>
           </div>
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex sm:flex-col lg:flex-row items-center gap-2">
             <Link
               href={`/budget/${params.id}/expense`}
               className="button-primary-filled w-full text-center"
@@ -102,7 +102,7 @@ export default function BudgetDetails({ params }: { params: { id: string } }) {
           {budget.categoryBreakdown.map((breakdown) => (
             <div
               key={breakdown.category}
-              className="flex flex-col space-y-2 border-t border-gray-600 pt-4"
+              className="flex flex-col space-y-2 border-t border-gray-600 pt-4 w-full"
             >
               <div className="flex justify-between text-sm">
                 <span className="font-medium">

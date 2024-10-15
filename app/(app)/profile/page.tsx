@@ -68,7 +68,7 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="flex flex-col p-6 bg-shadowGray rounded-lg shadow-lg space-y-6 text-black">
+    <div className="w-full flex flex-col p-6 bg-shadowGray rounded-lg shadow-lg space-y-6 text-black">
       <h2 className="text-3xl font-semibold bg-clip-text text-darkBackground">
         Profile
       </h2>

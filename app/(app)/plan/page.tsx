@@ -16,7 +16,7 @@ export default function PlanningHubInterestPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center text-center gap-8">
+    <div className="flex flex-col w-full items-center justify-center text-center gap-8">
       <div>
         <h1 className="text-3xl font-bold mb-4">
           Imagine the Ultimate Festival Planning Tool.

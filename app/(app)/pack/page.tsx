@@ -11,7 +11,7 @@ export default function PackingListInterestPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center text-center gap-8">
+    <div className="w-full flex flex-col items-center justify-center text-center gap-8">
       <div>
         <h1 className="text-3xl font-bold mb-4">
           Your Ultimate Festival Packing List Generator

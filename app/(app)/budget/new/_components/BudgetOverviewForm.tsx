@@ -21,11 +21,14 @@ export default function BudgetOverviewForm({
   };
 
   return (
-    <div className="flex flex-col items-center gap-6">
-      <form onSubmit={handleSubmit} className="text-white flex flex-col gap-4">
+    <div className="flex flex-col items-center w-full">
+      <form
+        onSubmit={handleSubmit}
+        className="text-white flex flex-col gap-4 w-full max-w-[400px] lg:border lg:border-3 lg:border-lightBackground lg:rounded-md lg:px-8 lg:py-6"
+      >
         <div className="flex justify-center">
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-[#A100FF] via-[#FFD700] to-[#00A676] bg-clip-text text-transparent mb-4 uppercase">
-            Create New Budget
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-[#A100FF] via-[#FFD700] to-[#00A676] bg-clip-text text-transparent uppercase">
+            Budget Details
           </h1>
         </div>
 

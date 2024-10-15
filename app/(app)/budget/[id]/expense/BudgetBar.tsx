@@ -18,7 +18,7 @@ export default function BudgetBar({
 
   return (
     <div className="flex flex-col items-center">
-      <div className="w-full max-w-xs bg-gray-200 h-6 rounded-lg overflow-hidden">
+      <div className=" bg-gray-200 h-6 rounded-lg overflow-hidden w-full">
         <div
           style={{ width: `${percentageUsed}%` }}
           className={`${barColor} h-full transition-all duration-300`}

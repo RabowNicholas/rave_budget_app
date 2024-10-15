@@ -10,7 +10,7 @@ export default function BudgetOverviewTile({
   const remainingBalance = budget.remainingBalance.toFixed(2);
 
   return (
-    <div className="flex flex-col p-6 bg-shadowGray rounded-lg shadow-lg  text-black w-full md:w-1/3 lg:w-1/4">
+    <div className="flex flex-col p-6 bg-shadowGray rounded-lg shadow-lg text-black w-full hover:scale-105 transition duration-300">
       <h2 className="text-2xl font-semibold bg-clip-text text-darkBackground">
         {budget.name}
       </h2>

@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 export default function Navbar() {
   const pathname = usePathname();
   return (
-    <div className="flex justify-between items-center bg-background rounded-full px-6 py-4 mb-4">
+    <div className="flex lg:flex-col lg:justify-normal sm:justify-between items-center bg-background lg:rounded-none sm:rounded-full px-6 py-4 mb-4">
       <NavIcon
         link=""
         selected={pathname === "/"}

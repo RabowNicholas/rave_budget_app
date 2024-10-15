@@ -74,7 +74,7 @@ export default function Page() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center w-full">
       {content}
       <div className="absolute w-[90%] justify-center flex bottom-6">
         <BudgetCreationStepIndicator

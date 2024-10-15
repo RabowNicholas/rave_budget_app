@@ -53,7 +53,7 @@ export default function BudgetLimitsForm({
   };
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="text-white flex flex-col gap-4 w-full max-w-[400px] lg:border lg:border-3 lg:border-lightBackground lg:rounded-md lg:px-8 lg:py-6">
       <button
         onClick={handleBackClick}
         className="button-primary-transparent self-start"
@@ -61,7 +61,7 @@ export default function BudgetLimitsForm({
         Back
       </button>
 
-      <h1 className="text-2xl font-bold bg-gradient-to-r from-[#A100FF] via-[#FFD700] to-[#00A676] bg-clip-text text-transparent mb-4 uppercase">
+      <h1 className="text-2xl font-bold bg-gradient-to-r from-[#A100FF] via-[#FFD700] to-[#00A676] bg-clip-text text-transparent  uppercase">
         Enter Budget Limits
       </h1>
 
