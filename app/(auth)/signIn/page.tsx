@@ -8,7 +8,7 @@ function SignInPage() {
   const redirect = searchParams.get("rd") ?? "/";
 
   return (
-    <div className="relative h-screen w-screen">
+    <div className="relative h-dvh w-screen">
       <video
         src="./assets/hero.mp4"
         className="absolute top-0 left-0 w-full h-full object-cover"

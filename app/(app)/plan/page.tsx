@@ -56,7 +56,10 @@ export default function PlanningHubInterestPage() {
         </ul>
       </div>
 
-      <button onClick={handleCTAClick} className="button-primary-filled">
+      <button
+        onClick={handleCTAClick}
+        className="bottom-10 z-10 button-primary-filled sticky"
+      >
         i want this feature
       </button>
     </div>

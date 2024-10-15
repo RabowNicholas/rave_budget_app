@@ -16,7 +16,7 @@ export default function RootLayout({
   const env = process.env.NEXT_PUBLIC_ENVIRONMENT;
   return (
     <html lang="en">
-      <body className="flex lg:flex-row sm:flex-col bg-darkBackground min-h-screen lg:p-0 sm:p-6 text-lightGrayText">
+      <body className="flex lg:flex-row sm:flex-col bg-darkBackground min-h-dvh lg:p-0 sm:px-6 text-lightGrayText">
         {env === "demo" && (
           <div className="text-xl text-center absolute z-10 bg-white rounded-md text-darkBackground px-2 py-1">
             This is a demo

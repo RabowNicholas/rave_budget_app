@@ -38,10 +38,7 @@ export default function OnboardForm() {
     }
   };
   return (
-    <form
-      className="h-screen flex flex-col gap-6 w-full"
-      onSubmit={handleSubmit}
-    >
+    <form className="h-dvh flex flex-col gap-6 w-full" onSubmit={handleSubmit}>
       <div className="text-2xl font-bold bg-gradient-to-r from-[#A100FF] via-[#FFD700] to-[#00A676] w-fit bg-clip-text text-transparent mb-4 uppercase">
         Onboarding
       </div>

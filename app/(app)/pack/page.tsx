@@ -40,7 +40,10 @@ export default function PackingListInterestPage() {
         </ul>
       </div>
 
-      <button onClick={handleCTAClick} className="button-primary-filled">
+      <button
+        onClick={handleCTAClick}
+        className="button-primary-filled sticky bottom-10 z-10"
+      >
         i want this feature
       </button>
     </div>

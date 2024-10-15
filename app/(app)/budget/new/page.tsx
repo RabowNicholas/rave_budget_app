@@ -76,7 +76,7 @@ export default function Page() {
   return (
     <div className="flex flex-col items-center justify-center w-full">
       {content}
-      <div className="absolute w-[90%] justify-center flex bottom-6">
+      <div className=" w-[90%] justify-center flex mt-6">
         <BudgetCreationStepIndicator
           currentStep={subpage === "overview" ? 0 : 1}
           totalSteps={2}

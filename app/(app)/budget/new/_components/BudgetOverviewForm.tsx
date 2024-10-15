@@ -52,7 +52,7 @@ export default function BudgetOverviewForm({
             Festival Date
           </label>
           <input
-            className="px-4 py-2 rounded-lg border-2  border-transparent bg-mediumGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple placeholder-white"
+            className="w-full h-10 px-4 py-2 rounded-lg border-2 border-transparent bg-mediumGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple placeholder-white appearance-none" // Full width and consistent styling
             type="date"
             id="date"
             value={date}

@@ -99,7 +99,7 @@ export default function Page({ params }: { params: { id: string } }) {
               Category
             </label>
             <select
-              className="px-4 py-2 rounded-lg border-2 border-transparent bg-mediumGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple placeholder-white"
+              className="h-10 px-4 py-2 rounded-lg border-2 border-transparent bg-mediumGray text-white focus:outline-none focus:ring-2 focus:ring-vibrantPurple placeholder-white"
               id="category"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
