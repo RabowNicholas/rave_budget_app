@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { BudgetOverviewData } from "./models";
+import trackBudgetCreationOverviewFormSubmit from "@/utils/mixpanel/events/BudgetCreationOverviewFormSubmit";
 
 export default function BudgetOverviewForm({
   onSubmitted,
@@ -17,6 +18,7 @@ export default function BudgetOverviewForm({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    trackBudgetCreationOverviewFormSubmit();
     onSubmitted({ name: name!, date: date!, location: location! });
   };
 

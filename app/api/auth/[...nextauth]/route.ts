@@ -1,6 +1,16 @@
 import { getAPIBaseURL } from "@/utils/ApiHelper";
-import NextAuth from "next-auth";
+import NextAuth, { DefaultSession } from "next-auth";
 import Auth0Provider from "next-auth/providers/auth0";
+
+export type ExtenderUser = DefaultSession["user"] & {
+  id: string | undefined;
+};
+
+declare module "next-auth" {
+  interface Session {
+    user: ExtenderUser;
+  }
+}
 
 const handler = NextAuth({
   pages: { signIn: "/signIn" },
@@ -15,6 +25,10 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
+    async session({ token, session }) {
+      session.user.id = token.sub;
+      return session;
+    },
     async jwt({ user, trigger, token }) {
       if (trigger === "signIn" || trigger == "signUp") {
         const apiBaseUrl = getAPIBaseURL();

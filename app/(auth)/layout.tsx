@@ -1,5 +1,6 @@
 import "../globals.css";
 import "../buttons.css";
+import ClientInitializer from "@/utils/ClientIntializer";
 
 export const metadata = {
   title: "Next.js",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-darkBackground text-lightGrayText">{children}</body>
+      <body className="bg-darkBackground text-lightGrayText">
+        <ClientInitializer>{children}</ClientInitializer>
+      </body>
     </html>
   );
 }

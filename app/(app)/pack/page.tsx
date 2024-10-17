@@ -1,11 +1,13 @@
 "use client";
 
+import trackFeatureInterest from "@/utils/mixpanel/events/FeatureInterest";
 import { useRouter } from "next/navigation";
 
 export default function PackingListInterestPage() {
   const router = useRouter();
 
   const handleCTAClick = async () => {
+    trackFeatureInterest("packing-list");
     await fetch("/api/interest/packing-list", { method: "POST" });
     router.push("/");
   };

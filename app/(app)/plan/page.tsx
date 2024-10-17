@@ -1,4 +1,5 @@
 "use client";
+import trackFeatureInterest from "@/utils/mixpanel/events/FeatureInterest";
 import {
   ArrowForwardRounded,
   CheckroomRounded,
@@ -11,6 +12,7 @@ import { useRouter } from "next/navigation";
 export default function PlanningHubInterestPage() {
   const router = useRouter();
   const handleCTAClick = async () => {
+    trackFeatureInterest("planning-hub");
     await fetch("/api/interest/planning-hub", { method: "POST" });
     router.push("/");
   };

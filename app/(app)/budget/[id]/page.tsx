@@ -4,6 +4,7 @@ import { DashboardBudgetOverview } from "./model";
 import { AddRounded } from "@mui/icons-material";
 import Link from "next/link";
 import BudgetBar from "./expense/BudgetBar";
+import trackFeatureInterest from "@/utils/mixpanel/events/FeatureInterest";
 
 export default function BudgetDetails({ params }: { params: { id: string } }) {
   const [budget, setBudget] = useState<DashboardBudgetOverview | undefined>();
@@ -32,6 +33,7 @@ export default function BudgetDetails({ params }: { params: { id: string } }) {
   }, [params.id]);
 
   const handleAddPeopleClick = async () => {
+    trackFeatureInterest("group-budget");
     await fetch("/api/interest/group-budget", { method: "POST" });
     setShowModal(true);
 

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { BudgetLimitData } from "./models";
+import trackBudgetCreated from "@/utils/mixpanel/events/BudgetCreationLimitsFormSubmit";
 
 export default function BudgetLimitsForm({
   onSubmitted,
@@ -17,6 +18,7 @@ export default function BudgetLimitsForm({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    trackBudgetCreated();
     const submittedData: BudgetLimitData[] = [];
 
     if (tickets !== null) {

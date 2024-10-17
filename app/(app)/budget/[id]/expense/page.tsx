@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { DashboardBudgetOverview } from "../model";
 import { useRouter } from "next/navigation";
+import trackExpenseAdded from "@/utils/mixpanel/events/ExpenseAdded";
 
 export default function Page({ params }: { params: { id: string } }) {
   const [budget, setBudget] = useState<DashboardBudgetOverview | undefined>();
@@ -41,6 +42,7 @@ export default function Page({ params }: { params: { id: string } }) {
     }
 
     try {
+      trackExpenseAdded();
       const response = await fetch(`/api/budget/${params.id}/expense`, {
         method: "POST",
         headers: {

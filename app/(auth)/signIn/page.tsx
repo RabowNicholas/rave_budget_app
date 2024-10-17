@@ -2,10 +2,16 @@
 import { signIn } from "next-auth/react";
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+import trackSignInAttempt from "@/utils/mixpanel/events/SignInAttempt";
 
 function SignInPage() {
   const searchParams = useSearchParams();
   const redirect = searchParams.get("rd") ?? "/";
+
+  const handleSignInWithPhoneClick = () => {
+    trackSignInAttempt();
+    signIn("auth0", { callbackUrl: redirect });
+  };
 
   return (
     <div className="relative h-dvh w-screen">
@@ -25,7 +31,7 @@ function SignInPage() {
         </p>
         <button
           className="button-primary-filled"
-          onClick={() => signIn("auth0", { callbackUrl: redirect })}
+          onClick={handleSignInWithPhoneClick}
         >
           Sign in with Phone Number
         </button>
