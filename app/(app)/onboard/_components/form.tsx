@@ -1,3 +1,4 @@
+import trackUserOnboarded from "@/utils/mixpanel/events/Onboard";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
@@ -31,6 +32,7 @@ export default function OnboardForm() {
         const result = await response.json();
         setError(result.error || "Failed to onboard");
       } else {
+        trackUserOnboarded();
         window.location.href = redirect;
       }
     } catch (err) {
